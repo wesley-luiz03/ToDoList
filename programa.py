@@ -6,7 +6,8 @@ def main():
         print("1 - Adicionar tarefa")
         print("2 - Ver tarefa")
         print("3 - Remover tarefa")
-        print("4 - Sair")
+        print("4 - Editar tarefa")
+        print("5 - Sair")
 
         opcao = input("Escolha uma opção: ")
 
@@ -17,6 +18,8 @@ def main():
         elif opcao == "3":
             remover_tarefa()
         elif opcao == "4":
+            editar_tarefa()
+        elif opcao == "5":
             print("Saindo...")
             break
         else:
@@ -34,6 +37,7 @@ def ver_tarefas():
         print("\nTarefas:")
         for i, tarefa in enumerate(tarefas, 1):
             print(f"{i}. {tarefa}")
+    
 
 def remover_tarefa():
     ver_tarefas()
@@ -47,6 +51,20 @@ def remover_tarefa():
                 print("Índice inválido.")
         except ValueError:
                 print("Por favor, digite um número válido.")
+
+def editar_tarefa():
+    ver_tarefas()
+    if tarefas:
+        try:
+            indice = int(input("Digite o número da tarefa que você deseja editar: ")) - 1
+            if 0 <= indice < len(tarefas):
+                nova_tarefa = input("Digite a nova descrição para a tarefa: ")
+                tarefas[indice] = nova_tarefa
+                print("Tarefa atualizada com sucesso!")
+            else:
+                print("Indice inválido.")
+        except ValueError:
+            print("Por favor, digite um número válido.")
 
 if __name__ == "__main__":
     main()
